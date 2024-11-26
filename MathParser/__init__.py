@@ -1,4 +1,4 @@
-from .MathParser import MathParser
+from .MathParser import math_parser
 
-__all__ = ['MathParser']
+__all__ = ['math_parser']
 

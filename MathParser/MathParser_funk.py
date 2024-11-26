@@ -179,18 +179,3 @@ def math_parser(expression: str) -> MathFunction:
     return __building_tree(expression.replace(' ', ''))
 
 
-
-# class MathParser(MathFunction):
-#     def __init__(self, expression: str):
-#         self.expr = __building_tree(expression.replace(' ', ''))
-
-
-#     def __repr__(self):
-#         return str(self.expr)
-
-
-#     def calculate(self) -> (int | float):
-#         return self.expr.calculate()
-
-
-
