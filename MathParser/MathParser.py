@@ -21,7 +21,7 @@ class Integer(MathFunction):
         self.args: list[int] = [data]
         self.func = type(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self.args[0])
 
     def calculate(self) -> int:
@@ -34,7 +34,7 @@ class Float(MathFunction):
         self.args: list[float] = [data]
         self.func = type(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self.args[0])
 
     def calculate(self) -> float:
@@ -47,7 +47,7 @@ class Add(MathFunction):
         self.args: list[MathFunction] = data
         self.func = type(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         ret_str: str = ''
         for i in self.args:
             if (type(i) == InvOfMul):
@@ -68,7 +68,7 @@ class Mul(MathFunction):
         self.args: list[MathFunction] = data
         self.func = type(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         ret_str: str = ''
         for i in range(0, len(self.args)):
             if (type(self.args[i]) not in [InvOfAdd, Add] or (type(self.args[i]) == InvOfAdd and i == 0)):
@@ -91,7 +91,7 @@ class InvOfAdd(MathFunction):
         self.args: list[MathFunction] = [data]
         self.func = type(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         if (type(self.args[0]) == Add):
             return '-(' + str(self.args[0]) + ')'
         if (type(self.args[0]) == InvOfMul):
@@ -110,7 +110,7 @@ class InvOfMul(MathFunction):
         self.args: list[MathFunction] = [data]
         self.func = type(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         if (type(self.args[0]) in [InvOfAdd, Mul, Add]):
             return '/ (' + str(self.args[0]) + ')'
         if (type(self.args[0]) == InvOfMul):
@@ -176,7 +176,10 @@ def __building_tree(expression: str) -> MathFunction:
 
 
 def math_parser(expression: str) -> MathFunction:
-    return __building_tree(expression.replace(' ', ''))
+    expression = expression.replace(' ', '')
+    if (expression == ""):
+        print("Некорректный ввод: Выражение не определено.")
+    return __building_tree(expression)
 
 
 
